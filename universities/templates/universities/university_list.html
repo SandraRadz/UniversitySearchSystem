@@ -1,5 +1,14 @@
-{% extends "../../templates/base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+    {% for university in object_list  %}
+        <h1><a href="{% url "university-detail" university.slug %}">{{ university.name }}</a></h1>
+        <p>Country: {{ university.country }}</p>
+        <p>Study Program:</p>
+        {% for program in university.study_programs.all %}
+            <p>{{ program.name }}</p>
+        {% endfor %}
+        <p>{{ university.description }}</p>
+    {% endfor %}
 {% endblock %}
 

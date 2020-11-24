@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ university.name }}</h1>
+    <p>Country: {{ university.country }}</p>
+    <p>Study Program:</p>
+    {% for program in university.study_programs.all %}
+        <p>{{ program.name }}</p>
+    {% endfor %}
+    <p>{{ university.description }}</p>
+{% endblock %}
+
