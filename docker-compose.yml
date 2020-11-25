@@ -23,9 +23,20 @@ services:
     ports:
       - "127.0.0.1:$POSTGRES_EXTERNAL_PORT:5432"
 
+  elasticsearch:
+    image: elasticsearch:7.9.3
+    volumes:
+      - tmp/esdata:/usr/share/elasticsearch/data
+    container_name: uni_search_system_elastic
+    environment:
+      - discovery.type=single-node
+    restart: on-failure
+    ports:
+      - "127.0.0.1:$ELASTIC_EXTERNAL_PORT:9200"
+
   app:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: /start
     image: uni_search_system_image_app
     container_name: uni_search_system_app
     volumes:
