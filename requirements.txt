@@ -1,7 +1,11 @@
 asgiref==3.3.1
 Django==3.1.3
 Django-Environ==0.4.5
+Django-Elasticsearch-dsl==7.1.4
 Django-Health-Check==3.16.1
+DjangoRestFramework==3.12.2
 psycopg2-binary==2.8.6
 pytz==2020.4
+pyexcel==0.6.6
+pyexcel-io==0.6.4
 sqlparse==0.4.1
