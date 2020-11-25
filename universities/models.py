@@ -25,6 +25,11 @@ class StudyProgram(models.Model):
         ('ONLINE', 'Online')
     )
 
+    DEGREE = (
+        ('bachelor', 'Bachelor'),
+        ('master', 'Master')
+    )
+
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     scholarship_availability = models.BooleanField(default=False)
@@ -33,6 +38,7 @@ class StudyProgram(models.Model):
     duration_in_month = models.IntegerField(null=True, blank=True)
     form_of_study = models.CharField(max_length=10, choices=FORM_OF_STUDY, null=True, blank=True)
     slug = models.SlugField(null=True, blank=True)
+    degree = models.CharField(max_length=10, choices=DEGREE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
