@@ -45,6 +45,7 @@ def edit_personal_information(request):
                 messages.success(request, "Information were successfully updated")
             else:
                 # send_confirmation_email.delay(user.id)
+                send_confirmation_email(user.id)
                 messages.warning(request, "Information were successfully updated. Please confirm your email address "
                                           "to complete your registration. It's easy "
                                           "- just check your email and click on the confirmation link.")
@@ -92,6 +93,7 @@ def register(request):
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             login(request, user)
             # send_confirmation_email.delay(user.id)
+            send_confirmation_email(user.id)
             messages.warning(request, "Thanks for joining Myset! Please confirm your email address to complete your "
                                       "registration. It's easy - just check your email and click on the confirmation "
                                       "link.")
