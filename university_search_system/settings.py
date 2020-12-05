@@ -34,6 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+APP_DOMAIN = env('APP_DOMAIN', default="127.0.0.1:8000")
 # Application definition
 
 INSTALLED_APPS = [
