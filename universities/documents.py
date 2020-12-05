@@ -4,7 +4,7 @@ from django_elasticsearch_dsl.registries import registry
 from .models import University, StudyProgram, Country
 
 
-@registry.doc_type
+# @registry.doc_type
 class UniversityDocument(Document):
     study_programs = fields.NestedField(properties={
         'name': fields.TextField(),

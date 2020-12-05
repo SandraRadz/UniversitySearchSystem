@@ -37,6 +37,12 @@ ALLOWED_HOSTS = ['*']
 APP_DOMAIN = env('APP_DOMAIN', default="127.0.0.1:8000")
 # Application definition
 
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'universities.apps.UniversitiesConfig',
     'core.apps.CoreConfig',
-    'users.apps.UsersConfig',
+    'accounts.apps.AccountsConfig',
     'health_check',
     'django_elasticsearch_dsl',
     'rest_framework',
