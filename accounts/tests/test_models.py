@@ -5,11 +5,11 @@ from ..models import User
 class UserTests(TestCase):
     def setUp(self):
         self.u1 = User.objects.create_user(
-            'myset@mail.com', 'John Doe', 'myset')
+            'uss@mail.com', 'John Doe', 'uss')
         self.u2 = User.objects.create_superuser(
-            'demo2@mail.com', 'Annie Lennox', 'myset')
+            'demo2@mail.com', 'Annie Lennox', 'uss')
         self.u3 = User.objects.create_user(
-            'robert.downey@mail.com', 'Leslie JJ Mills', 'myset')
+            'robert.downey@mail.com', 'Leslie JJ Mills', 'uss')
         self.u3.save()
 
     def test_required_fields(self):
@@ -23,7 +23,7 @@ class UserTests(TestCase):
             User.objects.create_superuser(email='', name='A')
 
     def test_create_user(self):
-        u = User.objects.get(email='myset@mail.com')
+        u = User.objects.get(email='uss@mail.com')
         self.assertEqual(u.name, 'John Doe')
         self.assertEqual(u.is_staff, False)
         self.assertEqual(u.is_active, True)

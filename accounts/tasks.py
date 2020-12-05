@@ -24,6 +24,6 @@ def send_confirmation_email(user_id):
             'uid': urlsafe_base64_encode(force_bytes(user_id)),
             'token': generator.make_token(user),
         })
-        send_html("MySet email verification", message, settings.DEFAULT_FROM_EMAIL, email)
+        send_html("USS email verification", message, settings.DEFAULT_FROM_EMAIL, email)
     except UserModel.DoesNotExist:
         logging.warning("Tried to send verification email to non-existing user '%s'" % user_id)

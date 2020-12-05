@@ -94,7 +94,7 @@ def register(request):
             login(request, user)
             # send_confirmation_email.delay(user.id)
             send_confirmation_email(user.id)
-            messages.warning(request, "Thanks for joining Myset! Please confirm your email address to complete your "
+            messages.warning(request, "Thanks for joining USS! Please confirm your email address to complete your "
                                       "registration. It's easy - just check your email and click on the confirmation "
                                       "link.")
             return redirect(reverse('index'))

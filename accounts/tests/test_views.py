@@ -9,7 +9,7 @@ from ..models import User
 class BaseViewTests(TestCase):
     def setUp(self):
         self.u1 = User.objects.create_user(
-            'myset@mail.com', 'John Doe', 'myset')
+            'uss@mail.com', 'John Doe', 'uss')
 
 
 class ProfileViewTests(BaseViewTests):
@@ -63,8 +63,8 @@ class LoginViewTest(BaseViewTests):
         response = self.client.post(
             reverse('login'),
             data={
-                'username': 'myset@mail.com',
-                'password': 'myset',
+                'username': 'uss@mail.com',
+                'password': 'uss',
             },
             follow=True)
         self.assertEqual(response.status_code, 200)
