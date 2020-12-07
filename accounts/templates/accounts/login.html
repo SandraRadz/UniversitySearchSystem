@@ -37,7 +37,7 @@
                 <div class="d-flex justify-content-center">
                     <h3 class="mb-4">Реєстрація</h3>
                 </div>
-                <form action="{% url 'register' %} d-flex" method="post">
+                <form action="{% url 'register' %}" method="post">
                     {% csrf_token %}
                     {% include "forms/form_fields.html" with form=register_form %}
                     <div class="form-group d-flex justify-content-center">
