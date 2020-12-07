@@ -1,0 +1,11 @@
+nav.navbar {
+    background-color: white !important;
+}
+
+nav.navbar a.navbar-brand {
+    font-weight: 700;
+}
+
+nav.navbar a.navbar-brand svg {
+    margin-left: 20px;
+}

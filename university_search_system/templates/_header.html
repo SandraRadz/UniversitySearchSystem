@@ -1,13 +1,39 @@
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/header/styles.css' %}">
+{% endblock %}
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
-  <a class="navbar-brand" href="{% url 'index' %}">USS</a>
+  <a class="navbar-brand" href="{% url 'index' %}">USS <svg width="75" height="67" viewBox="0 0 75 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M60.783 28.157C60.5954 20.9928 66.251 15.0331 73.4152 14.8455L74.0738 39.9981L61.102 40.3378L60.783 28.157Z" fill="#9B9B9B"/>
+<path d="M25.7965 29.7133L51.2195 0.571028L45.1512 29.2064L35.33 39.5508L25.7965 29.7133Z" fill="#9B9B9B"/>
+<path d="M1.04761 41.9176C0.841447 34.0445 7.05678 27.4949 14.93 27.2887L63.3463 26.0209C66.9801 25.9257 70.003 28.7943 70.0981 32.4281L70.2991 40.1042L1.04761 41.9176Z" fill="#C4C4C4"/>
+<path d="M25.9896 37.0862L52.903 64.8579L44.8022 34.2366L34.9952 26.7632L25.9896 37.0862Z" fill="#C4C4C4"/>
+<ellipse cx="11.6474" cy="32.304" rx="1.51046" ry="1.64257" transform="rotate(-1.5 11.6474 32.304)" fill="black"/>
+<ellipse cx="16.4517" cy="32.1782" rx="1.51046" ry="1.64257" transform="rotate(-1.5 16.4517 32.1782)" fill="black"/>
+<ellipse cx="21.2562" cy="32.0524" rx="1.51046" ry="1.64257" transform="rotate(-1.5 21.2562 32.0524)" fill="black"/>
+<ellipse cx="26.0605" cy="31.9266" rx="1.51046" ry="1.64257" transform="rotate(-1.5 26.0605 31.9266)" fill="black"/>
+<ellipse cx="30.8648" cy="31.8008" rx="1.51046" ry="1.64257" transform="rotate(-1.5 30.8648 31.8008)" fill="black"/>
+<ellipse cx="35.6693" cy="31.675" rx="1.51046" ry="1.64257" transform="rotate(-1.5 35.6693 31.675)" fill="black"/>
+<ellipse cx="40.4736" cy="31.5491" rx="1.51046" ry="1.64257" transform="rotate(-1.5 40.4736 31.5491)" fill="black"/>
+<ellipse cx="45.2779" cy="31.4234" rx="1.51046" ry="1.64257" transform="rotate(-1.5 45.2779 31.4234)" fill="black"/>
+<ellipse cx="50.0824" cy="31.2977" rx="1.51046" ry="1.64257" transform="rotate(-1.5 50.0824 31.2977)" fill="black"/>
+<ellipse cx="54.8868" cy="31.1717" rx="1.51046" ry="1.64257" transform="rotate(-1.5 54.8868 31.1717)" fill="black"/>
+</svg>
+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse d-lg-flex justify-content-lg-between" id="navbarNav">
+  <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-
+      <li class="nav-item">
+          <a class="nav-link button white no-border">Університети</a>
+      </li>
+    </ul>
+  <ul class="navbar-nav">
+      <li class="nav-item">
+          <a class="nav-link button white no-border">Рейтинги</a>
       </li>
     </ul>
     <ul class="navbar-nav">
@@ -23,7 +49,7 @@
             </li>
         {% else %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Log In / Sign Up</a>
+                <a class="nav-link button" href="{% url 'login' %}">Особистий кабінет</a>
             </li>
         {% endif %}
     </ul>

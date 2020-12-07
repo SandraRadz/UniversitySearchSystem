@@ -1,0 +1,62 @@
+section {
+    padding: 100px 0;
+}
+
+#quote-section {
+    background: #3CA89A;
+    color: white;
+
+    padding: 150px 0 200px 0;
+}
+
+#quote-section .container {
+    padding-right: 35%;
+    height: 100px;
+}
+
+#quote-section .container div {
+    text-align: justify;
+    position: relative;
+}
+
+#quote-section .container svg {
+    position: absolute;
+    top: -40px;
+    left: -50px;
+    z-index: 10;
+}
+
+#quote-section .container p {
+    position: absolute;
+    z-index: 100;
+}
+
+#features-section .container .list-item {
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+#main-section {
+    position: relative;
+}
+
+#main-section .container {
+    text-align: center;
+}
+
+#main-section .container h1 {
+    font-size: 60px;
+    line-height: 70px;
+    margin-bottom: 30px;
+}
+
+#main-section .container .btn-holder a.button {
+    width: 250px;
+}
+
+#main-section .subscribeDiv {
+    position: absolute;
+    left: 0;
+    top: 30px;
+}

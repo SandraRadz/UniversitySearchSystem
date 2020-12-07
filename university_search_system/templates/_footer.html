@@ -1,0 +1,30 @@
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/footer/styles.css' %}">
+{% endblock %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="footerNav">
+    <div class="container">
+        <div class="collapse navbar-collapse d-lg-flex justify-content-lg-around">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link button white no-border">Університети</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link button white no-border">Рейтинги</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link button white no-border">Пошук</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link button white no-border">Особистий кабінет</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    Copyright © 2020
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
