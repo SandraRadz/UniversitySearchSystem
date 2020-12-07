@@ -79,3 +79,21 @@ h4 {
     background-color: rgba(67, 185, 170, .25);
     border: 1px solid rgba(67, 185, 170, 1);
 }
+
+.list-item {
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 2px 7px 30px rgba(0, 0, 0, .04);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    padding: 1rem;
+    border-radius: 7px;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+.list-item:hover {
+    top: -3px;
+    box-shadow: 2px 7px 30px rgba(0, 0, 0, .12);
+}
