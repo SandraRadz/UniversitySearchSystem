@@ -3,7 +3,7 @@
     font-size: 20px;
 }
 
-a.button {
+.button {
     cursor: pointer;
     display: inline-block;
 
@@ -24,25 +24,25 @@ a.button {
     transition: background-color .5s ease, color .5s ease, border-color .5s ease;
 }
 
-a.button:hover {
+.button:hover {
     color: black !important;
     background-color: white;
     background-position: -100% 100%;
 }
 
-a.button.white {
+.button.white {
     color: black !important;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, .25);
 }
 
-a.button.white:hover {
+.button.white:hover {
     background-color: rgba(67, 185, 170, 1);
     border: 1px solid rgba(67, 185, 170, 1);
     color: white !important;
 }
 
-a.button.no-border {
+.button.no-border {
     border: none !important;
 }
 
@@ -73,4 +73,9 @@ h3 {
 h4 {
     font-size: 18px;
     font-weight: 700;
+}
+
+.form-group input.form-control {
+    background-color: rgba(67, 185, 170, .25);
+    border: 1px solid rgba(67, 185, 170, 1);
 }
