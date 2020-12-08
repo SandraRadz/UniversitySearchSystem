@@ -67,7 +67,7 @@
         <div class="container">
             <h2>Збережені</h2>
             <div>
-                {% for specialization in user.saved_programs %}
+                {% for specialization in user.saved_programs.all %}
                     <div class="list-item" style="cursor: pointer"
                          onclick="location.href='{% url "study-program-detail" specialization.id %}';">
                         <div class="row">
@@ -138,7 +138,7 @@
         <div class="container">
             <h2>Історія пошуку</h2>
             <div>
-                {% for university in user.search_university_history %}
+                {% for university in user.search_university_history.all %}
                     <div class="list-item" style="cursor: pointer"
                          onclick="location.href='{% url "university-detail" university.slug %}';">
                         <div class="row">
