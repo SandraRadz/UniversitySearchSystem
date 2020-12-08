@@ -155,11 +155,11 @@
 
             $.get("/universities/api/v1/delete-from-saved?id={{ studyprograminuniversity.id }}")
                 .done(function () {
-                    alert("Успішно додано до збережених.")
+                    alert("Успішно видалено зі збережених.")
                 })
                 .fail(function (error) {
                     console.log(error)
-                    alert("Не вдалося додати до збережених.")
+                    alert("Не вдалося видалити зі збережених.")
                 })
                 .always(function () {
                     location.reload()
