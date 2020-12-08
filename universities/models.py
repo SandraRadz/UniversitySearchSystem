@@ -7,114 +7,88 @@ from pyexcel import get_sheet
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(null=True, blank=True)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Country, self).save(*args, **kwargs)
-        return self
+    @property
+    def slug(self):
+        return slugify(self.name)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Country"
+        verbose_name_plural = "Countries"
 
 
 class StudyProgram(models.Model):
-    FORM_OF_STUDY = (
-        ('OFFLINE', 'Offline'),
-        ('ONLINE', 'Online')
-    )
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True, null=True)
 
-    DEGREE = (
-        ('bachelor', 'Bachelor'),
-        ('master', 'Master')
-    )
-
-    name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    scholarship_availability = models.BooleanField(default=False)
-    scholarship_description = models.TextField(null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    duration_in_month = models.IntegerField(null=True, blank=True)
-    form_of_study = models.CharField(max_length=10, choices=FORM_OF_STUDY, null=True, blank=True)
-    slug = models.SlugField(null=True, blank=True)
-    degree = models.CharField(max_length=10, choices=DEGREE, null=True, blank=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(StudyProgram, self).save(*args, **kwargs)
-        return self
+    @property
+    def slug(self):
+        return slugify(self.name)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Study Program"
+        verbose_name_plural = "Study Programs"
 
 
 class University(models.Model):
     name = models.CharField(max_length=255)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
-    study_programs = models.ManyToManyField(StudyProgram, blank=True)
     description = models.TextField(null=True, blank=True)
-    slug = models.SlugField(null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(University, self).save(*args, **kwargs)
-        return self
+    @property
+    def slug(self):
+        return slugify(self.name)
 
     def __str__(self):
         return self.name
 
-    @classmethod
-    def populate(cls):
-        cls.objects.all().delete()
-        uni_data = []
-        sheet = get_sheet(
-            file_name=os.path.join(settings.BASE_DIR, 'universities.csv'),
-            name_columns_by_row=0
-        )
-        for (
-                name, country, program,
-                degree, price, edu_start,
-                scholarship, duration, edu_form,
-                program_description
-        ) in zip(
-            sheet.column['НАЗВА'],
-            sheet.column['КРАЇНА'],
-            sheet.column['Програма'],
-            sheet.column['Ступінь'],
-            sheet.column['Ціна'],
-            sheet.column['Початок навчання'],
-            sheet.column['Стипендії'],
-            sheet.column['Тривалість'],
-            sheet.column['Форма навчання'],
-            sheet.column['Опис прог'],
-        ):
-            country_obj = Country.objects.filter(name__exact=country)
-            if len(country_obj) > 0:
-                country = country_obj[0]
-            else:
-                country = Country(name=country).save()
-            uni_data.append({
-                'name': name,
-                'country': country,
-                'program': program,
-                'degree': degree,
-                'price': price,
-                'edu_start': edu_start,
-                'scholarship': scholarship,
-                'duration': duration,
-                'edu_form': edu_form,
-                'program_description': program_description
-            })
-        # TODO
-        # cls.objects.bulk_create([
-        #     cls(
-        #         name=data['name'],
-        #         description=data['description'],
-        #         speaker=data['speaker'],
-        #         url=data['url'],
-        #         number_of_views=data['number_of_views'],
-        #         transcript=data['transcript'],
-        #     )
-        #     for data in uni_data
-        # ])
+    class Meta:
+        verbose_name = "University"
+        verbose_name_plural = "Universities"
+
+
+class StudyProgramInUniversity(models.Model):
+    offline, online = 'OFFLINE', 'ONLINE'
+    bachelor, master = 'bachelor', 'master'
+    FORM_OF_STUDY = (
+        (offline, 'Offline'),
+        (online, 'Online')
+    )
+
+    DEGREE = (
+        (bachelor, 'Bachelor'),
+        (master, 'Master')
+    )
+
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    currency = models.CharField(max_length=5, null=True, blank=True)
+    scholarship_availability = models.BooleanField(default=False)
+    scholarship_description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    duration_in_month = models.IntegerField(null=True, blank=True)
+    duration = models.CharField(max_length=255, null=True, blank=True)
+    form_of_study = models.CharField(max_length=10, choices=FORM_OF_STUDY, null=True, blank=True)
+    degree = models.CharField(max_length=10, choices=DEGREE, null=True, blank=True)
+    start_of_study = models.CharField(max_length=255, blank=True, null=True)
+
+    study_program = models.ForeignKey(StudyProgram, on_delete=models.CASCADE, related_name="university_study_programs")
+    university = models.ForeignKey(University, on_delete=models.CASCADE, related_name="university_study_programs")
+
+    @property
+    def slug(self):
+        return slugify(f"{self.degree} {self.study_program.name} {self.university.name}")
+
+    def __str__(self):
+        return f"{self.degree} of {self.study_program.name} in {self.university.name}"
+
+    class Meta:
+        verbose_name = "University Study Program"
+        verbose_name_plural = "University Study Programs"
