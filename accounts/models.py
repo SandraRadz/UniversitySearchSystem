@@ -8,6 +8,8 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 
+from universities.models import StudyProgramInUniversity, University
+
 
 class UserManager(BaseUserManager):
     """
@@ -85,6 +87,11 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
+
+    subscribe = models.BooleanField(default=False)
+
+    saved_programs = models.ManyToManyField(StudyProgramInUniversity, blank=True)
+    search_university_history = models.ManyToManyField(University, blank=True)
 
     date_joined = models.DateTimeField(_('Date joined'), default=timezone.now)
 

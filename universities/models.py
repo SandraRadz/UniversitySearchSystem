@@ -42,6 +42,8 @@ class University(models.Model):
     name = models.CharField(max_length=255)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    rating = models.IntegerField(null=True, blank=True)
+    img_url = models.URLField(null=True, blank=True)
 
     @property
     def slug(self):
