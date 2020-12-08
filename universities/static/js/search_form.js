@@ -37,6 +37,45 @@ $(document).ready(function () {
             "&query=" + encodeURIComponent(query)
     });
 
+    const url = new URL(location.href)
+
+    const priceFromQuery = url.searchParams.get("priceFrom")
+    const priceToQuery = url.searchParams.get("priceTo")
+    const scholarshipQuery = url.searchParams.get("scholarShip")
+    const degreeQuery = url.searchParams.get("degree")
+    const specQuery = url.searchParams.get("spec")
+    const countryQuery = url.searchParams.get("country")
+    const queryQuery = url.searchParams.get("query")
+
+    var startPriceFrom;
+    var startPriceTo;
+    if (priceFromQuery != null) {
+        startPriceFrom = parseInt(priceFromQuery)
+    } else {
+        startPriceFrom = price_from * 1.2;
+    }
+    if (priceToQuery != null) {
+        startPriceTo = parseInt(priceToQuery)
+    } else {
+        startPriceTo = price_to * 0.6;
+    }
+
+    if (scholarshipQuery != null) {
+        $('#scholarship').val(scholarshipQuery)
+    }
+    if (degreeQuery != null) {
+        $('#degree').val(degreeQuery)
+    }
+    if (specQuery != null) {
+        $('#spec').val(specQuery)
+    }
+    if (countryQuery != null) {
+        $('#country').val(countryQuery)
+    }
+    if (queryQuery != null) {
+        $('#query').val(queryQuery)
+    }
+
     $('.noUi-handle').on('click', function () {
         $(this).width(10);
     });
@@ -48,7 +87,7 @@ $(document).ready(function () {
     });
 
     noUiSlider.create(rangeSlider, {
-        start: [price_from * 1.2, price_to * 0.6],
+        start: [startPriceFrom, startPriceTo],
         step: 1,
         range: {
             'min': [price_from],
