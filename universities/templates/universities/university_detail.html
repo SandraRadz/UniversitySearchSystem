@@ -28,10 +28,10 @@
                         <p class="label-info">100.0</p>
                     </div>
                     {% for program in university.study_programs.all %}
-                        <div class="info">
+                        <a class="info" href="{% url "study-program-detail" program.slug %}">
                             <p class="label-text">Назва програми:</p>
                             <p class="label-info">{{ program.name }}</p>
-                        </div>
+                        </a>
                         <div class="info">
                             <p class="label-text">Опис програми:</p>
                             <p class="label-info">{{ program.description }}</p>

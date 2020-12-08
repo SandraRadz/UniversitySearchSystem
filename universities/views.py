@@ -39,3 +39,39 @@ class UniversityListView(ListView):
         context['price_from'] = min(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
         context['price_to'] = max(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
         return context
+
+
+class UniversityStudyProgramDetailView(DetailView):
+    model = StudyProgramInUniversity
+    template_name = "universities/university_study_program_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_object(self, queryset=None):
+        slug = self.kwargs['slug']
+        for program in StudyProgramInUniversity.objects.all():
+            if slugify(program.name) == slug:
+                return program
+        return None
+
+
+class UniversityStudyProgramListView(ListView):
+    model = StudyProgramInUniversity
+    template_name = "universities/university_study_program_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form_of_study"] = StudyProgramInUniversity.objects.all().values_list('form_of_study', flat=True).distinct()
+        context["study_program"] = StudyProgram.objects.all()
+        context["degree"] = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
+        context["university"] = University.objects.all()
+        context['counties'] = Country.objects.all()
+        context['price_from'] = min(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
+        context['price_to'] = max(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
+        return context
+
+
+def study_program_filter():
+    pass
