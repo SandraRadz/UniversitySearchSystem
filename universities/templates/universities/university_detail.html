@@ -19,7 +19,11 @@
                     </div>
                     <div class="info">
                         <p class="label-text">Опис:</p>
-                        <p class="label-info">{{ university.description }}</p>
+                        {% if university.description is not none %}
+                            <p class="label-info">{{ university.description }}</p>
+                        {% else %}
+                            <p class="label-info"><i>Відсутній</i></p>
+                        {% endif %}
                     </div>
                     <div class="info">
                         <p class="label-text">

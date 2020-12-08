@@ -27,7 +27,11 @@
                         </div>
                         <div class="info">
                             <p class="label-text">Опис:</p>
-                            <p class="label-info">{{ university.description }}</p>
+                            {% if university.description is not none %}
+                                <p class="label-info">{{ university.description }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Відсутній</i></p>
+                            {% endif %}
                         </div>
                         <div class="info">
                             <p class="label-text">
@@ -43,5 +47,9 @@
 {% endblock %}
 
 {% block extra_js %}
+    <script>
+        var price_from = {{ price_from }};
+        var price_to = {{ price_to }};
+    </script>
     <script src="{% static '/js/search_form.js' %}"></script>
 {% endblock %}

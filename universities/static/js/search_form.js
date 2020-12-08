@@ -11,12 +11,13 @@ $(document).ready(function () {
         thousand: ',',
         prefix: '$'
     });
+
     noUiSlider.create(rangeSlider, {
-        start: [1000, 3500],
+        start: [price_from * 1.2, price_to * 0.6],
         step: 1,
         range: {
-            'min': [1000],
-            'max': [10000]
+            'min': [price_from],
+            'max': [price_to]
         },
         format: moneyFormat,
         connect: true
