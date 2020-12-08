@@ -67,7 +67,7 @@ class UniversityStudyProgramListView(ListView):
         context["study_program"] = StudyProgram.objects.all()
         context["degree"] = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
         context["university"] = University.objects.all()
-        context['counties'] = Country.objects.all()
+        context['countries'] = Country.objects.all()
         context['price_from'] = min(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
         context['price_to'] = max(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
         return context
