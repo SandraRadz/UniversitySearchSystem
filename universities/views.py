@@ -6,7 +6,7 @@ from django.template.defaultfilters import slugify
 from django.views.generic import DetailView, ListView
 
 from universities.forms import UniversityStudyProgramFilterForm
-from universities.models import University, Country
+from universities.models import University, Country, StudyProgramInUniversity, StudyProgram
 
 
 class UniversityDetailView(DetailView):
@@ -31,9 +31,11 @@ class UniversityListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        form = UniversityStudyProgramFilterForm()
-
-        context['form'] = form
+        context["form_of_study"] = StudyProgramInUniversity.objects.all().values_list('form_of_study', flat=True).distinct()
+        context["study_program"] = StudyProgram.objects.all()
+        context["degree"] = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
+        context["university"] = University.objects.all()
         context['counties'] = Country.objects.all()
+        context['price_from'] = min(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
+        context['price_to'] = max(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
         return context
