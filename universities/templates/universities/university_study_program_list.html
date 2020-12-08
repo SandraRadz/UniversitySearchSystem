@@ -1,10 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-center" style="margin: 25px 0 40px 0">
+            <h1>Пошук спеціальності</h1>
+        </div>
+        <div class="search-panel">
+            {% include 'forms/search_form.html' %}
+        </div>
+        {% for specialization in object_list %}
+            <div class="list-item" style="cursor: pointer"
+                 onclick="location.href='{% url "study-program-detail" specialization.slug %}';">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>{{ specialization.study_program.name }}</h3>
+                        <div class="info">
+                            <p class="label-text">Опис:</p>
+                            {% if specialization.study_program.description is not none %}
+                                <p class="label-info">{{ specialization.study_program.description }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Відсутній</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Опис від університету:</p>
+                            {% if specialization.description is not none %}
+                                <p class="label-info">{{ specialization.description }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Відсутній</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">
+                                Ціна:
+                            </p>
+                            {% if specialization.price is not none %}
+                                <p class="label-info">{{ specialization.price }} $</p>
+                            {% else %}
+                                <p class="label-info"><i>Відсутня</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">
+                                К-сть місяців навчання:
+                            </p>
+                            {% if specialization.duration_in_month is not none %}
+                                <p class="label-info">{{ specialization.duration_in_month }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">
+                                Форма навчання:
+                            </p>
+                            {% if specialization.form_of_study is not none %}
+                                <p class="label-info">{{ specialization.form_of_study }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">
+                                Ступінь:
+                            </p>
+                            {% if specialization.degree is not none %}
+                                <p class="label-info">{{ specialization.degree }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var price_from = {{ price_from }};
+        var price_to = {{ price_to }};
+    </script>
+    <script src="{% static '/js/search_form.js' %}"></script>
+{% endblock %}

@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <div class="container">
+        <div class="list-item hovered">
+            <div class="row">
+                <div class="col-12">
+                    <h3>{{ university.name }}</h3>
+                    <div class="info">
+                        <p class="label-text">
+                            Країна:
+                        </p>
+                        <p class="label-info">{{ university.country }}</p>
+                    </div>
+                    <div class="info">
+                        <p class="label-text">Опис:</p>
+                        {% if university.description is not none %}
+                            <p class="label-info">{{ university.description }}</p>
+                        {% else %}
+                            <p class="label-info"><i>Відсутній</i></p>
+                        {% endif %}
+                    </div>
+                    <div class="info">
+                        <p class="label-text">
+                            Рейтинг:
+                        </p>
+                        {% if university.rating is not none %}
+                            <p class="label-info">{{ university.rating }}.0</p>
+                        {% else %}
+                            <p class="label-info"><i>Відсутній</i></p>
+                        {% endif %}
+                    </div>
+                    {% for program in university.study_programs.all %}
+                        <a class="info" href="{% url "study-program-detail" program.slug %}">
+                            <p class="label-text">Назва програми:</p>
+                            <p class="label-info">{{ program.name }}</p>
+                        </a>
+                        <div class="info">
+                            <p class="label-text">Опис програми:</p>
+                            <p class="label-info">{{ program.description }}</p>
+                        </div>
+                        <p>{{ program.name }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
