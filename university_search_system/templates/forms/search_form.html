@@ -3,13 +3,13 @@
     <link rel="stylesheet" href="{% static '/css/search_form.css' %}">
 {% endblock %}
 
-<form class="form" method="POST" action="#">
+<form class="form" method="POST" action="#" id="searchForm">
     <div class="row justify-content-between">
         <div class="col-9">
             <div class="row">
                 <div class="input-group input--large col-12">
                     <label class="label">Що хочете вчити?</label>
-                    <input class="input--style-1" type="text" placeholder="Почніть вводити" name="going">
+                    <input class="input--style-1" type="text" id="query" placeholder="Почніть вводити" name="going">
                 </div>
             </div>
             <div class="row justify-content-around">
@@ -26,8 +26,8 @@
                 <div class="col-3 d-flex justify-content-center">
                     <div class="input-group input--medium">
                         <label class="label">Спеціальність</label>
-                        <select class="input--style-1">
-                            <option>Computer Science</option>
+                        <select class="input--style-1" id="spec">
+                            <option value="cs">Computer Science</option>
                         </select>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="col-3 d-flex justify-content-end">
                     <div class="input-group input--medium">
                         <label class="label">Стипендія</label>
-                        <select class="input--style-1">
+                        <select class="input--style-1" id="scholarship">
                             <option value="true">Повна</option>
                             <option value="false">Відсутня</option>
                         </select>
@@ -75,7 +75,7 @@
                 <div class="col-3 d-flex justify-content-start">
                     <div class="input-group input--medium">
                         <label class="label">Бажана ступінь</label>
-                        <select class="input--style-1">
+                        <select class="input--style-1" id="degree">
                             {% for d in degree %}
                                 <option value="{{ d }}">{{ d }}</option>
                             {% endfor %}

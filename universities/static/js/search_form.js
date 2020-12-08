@@ -2,6 +2,33 @@
 
 // Initialize slider:
 $(document).ready(function () {
+    $('#searchForm').submit(function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+
+        return false;
+    });
+
+    $('#searchBtn').click(function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+
+        const priceFrom = $('#slider-range-value1').text()
+        const priceTo = $('#slider-range-value2').text()
+
+        let scholarShip = $('#scholarship').val()
+        scholarShip = scholarShip === 'true'
+
+        const degree = $('#degree').val()
+        const spec = $('#spec').val()
+        const country = $('#country').val()
+        const query = $('#query').val()
+
+        console.log(priceFrom, priceTo, scholarShip, degree, spec, country, query)
+    });
+
     $('.noUi-handle').on('click', function () {
         $(this).width(10);
     });
