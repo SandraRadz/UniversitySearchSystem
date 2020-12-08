@@ -38,7 +38,7 @@
                         {% endif %}
                     </div>
                     {% for program in university.university_study_programs.all %}
-                        <a class="info" href="{% url "study-program-detail" program.slug %}">
+                        <a class="info" href="{% url "study-program-detail" program.id %}">
                             <p class="label-text">Назва програми:</p>
                             <p class="label-info">{{ program.study_program.name }}</p>
                         </a>

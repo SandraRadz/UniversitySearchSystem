@@ -12,7 +12,7 @@
         </div>
         {% for specialization in object_list %}
             <div class="list-item" style="cursor: pointer"
-                 onclick="location.href='{% url "study-program-detail" specialization.slug %}';">
+                 onclick="location.href='{% url "study-program-detail" specialization.id %}';">
                 <div class="row">
                     <div class="col-12">
                         <h3>{{ specialization.study_program.name }}</h3>
