@@ -86,7 +86,7 @@ class StudyProgramInUniversity(models.Model):
 
     @property
     def slug(self):
-        return slugify(f"{self.degree} {self.study_program.name} {self.university.name}")
+        return slugify(f"{self.degree} {self.study_program.name} in {self.university.name}")
 
     def __str__(self):
         return f"{self.degree} of {self.study_program.name} in {self.university.name}"
