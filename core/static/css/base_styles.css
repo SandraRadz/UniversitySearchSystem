@@ -98,3 +98,21 @@ h4 {
     top: -3px;
     box-shadow: 2px 7px 30px rgba(0, 0, 0, .12);
 }
+
+.list-item .info {
+    margin-bottom: 15px;
+}
+
+.list-item .info p {
+    display: inline;
+}
+
+.list-item .info .label-text {
+    font-weight: 700;
+}
+
+.list-item.hovered {
+    top: -3px;
+    box-shadow: 2px 7px 30px rgba(0, 0, 0, .12);
+    cursor: default !important;
+}
