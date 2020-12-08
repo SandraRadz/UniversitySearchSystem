@@ -18,9 +18,17 @@
                 {% endif %}
                 <a class="button white" href="{% url 'study-program-list' %}">Пошук</a>
             </div>
-            <div class="subscribeDiv">
-                <img src="{% static '/img/subscribe.png' %}">
-            </div>
+            {% if request.user.is_authenticated %}
+                {% if request.user.subscribe != True %}
+                    <div class="subscribeDiv" id="subscribeBtn" style="cursor: pointer">
+                        <img src="{% static '/img/subscribe.png' %}">
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="subscribeDiv" id="subscribeBtn" style="cursor: pointer">
+                    <img src="{% static '/img/subscribe.png' %}">
+                </div>
+            {% endif %}
         </div>
     </section>
 
@@ -77,5 +85,21 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $('#subscribeBtn').click(function (e) {
+            e.preventDefault()
+            e.stopImmediatePropagation();
+
+            $.get("/universities/api/v1/subscribe").done(function (data) {
+                if (data['status'] === 403)
+                    location.href = '{% url 'login' %}';
+                else
+                    alert('Дякуємо! Вас успішно підписано.')
+            })
+        })
+    </script>
 {% endblock %}
 
