@@ -15,7 +15,7 @@
                  onclick="location.href='{% url "university-detail" university.slug %}';">
                 <div class="row">
                     <div class="col-4">
-                        <img src="{% static '/img/img.png' %}">
+                        <img src="{{ university.img_url }}">
                     </div>
                     <div class="col-8">
                         <h3>{{ university.name }}</h3>
@@ -37,7 +37,11 @@
                             <p class="label-text">
                                 Рейтинг:
                             </p>
-                            <p class="label-info">100.0</p>
+                            {% if university.rating is not none %}
+                                <p class="label-info">{{ university.rating }}.0</p>
+                            {% else %}
+                                <p class="label-info"><i>Відсутній</i></p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
