@@ -15,8 +15,8 @@ $(document).ready(function () {
         e.stopImmediatePropagation();
         e.stopPropagation();
 
-        const priceFrom = $('#slider-range-value1').text()
-        const priceTo = $('#slider-range-value2').text()
+        const priceFrom = $('#slider-range-value1').text().replace("$", "").replace(" ", "")
+        const priceTo = $('#slider-range-value2').text().replace("$", "").replace(" ", "")
 
         let scholarShip = $('#scholarship').val()
         scholarShip = scholarShip === 'true'
@@ -27,6 +27,14 @@ $(document).ready(function () {
         const query = $('#query').val()
 
         console.log(priceFrom, priceTo, scholarShip, degree, spec, country, query)
+
+        location.href = "/universities/study-programs?priceFrom=" + encodeURIComponent(priceFrom) +
+            "&priceTo=" + encodeURIComponent(priceTo) +
+            "&scholarShip=" + encodeURIComponent(scholarShip) +
+            "&degree=" + encodeURIComponent(degree) +
+            "&spec=" + encodeURIComponent(spec) +
+            "&country=" + encodeURIComponent(country) +
+            "&query=" + encodeURIComponent(query)
     });
 
     $('.noUi-handle').on('click', function () {
@@ -35,7 +43,7 @@ $(document).ready(function () {
     var rangeSlider = document.getElementById('slider-range');
     var moneyFormat = wNumb({
         decimals: 0,
-        thousand: ',',
+        thousand: ' ',
         prefix: '$'
     });
 

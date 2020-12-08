@@ -17,8 +17,9 @@
                     <div class="input-group input--medium">
                         <label class="label">Країна</label>
                         <select id="country" name="country" class="input--style-1">
+                            <option value="all">Всі</option>
                             {% for country in countries %}
-                                <option value="{{ country.name }}">{{ country.name }}</option>
+                                <option value="{{ country.id }}">{{ country.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -27,6 +28,7 @@
                     <div class="input-group input--medium">
                         <label class="label">Спеціальність</label>
                         <select class="input--style-1" id="spec">
+                            <option value="all">Всі</option>
                             {% for program in study_program %}
                                 <option value="{{ program.id }}">{{ program.name }}</option>
                             {% endfor %}
@@ -78,6 +80,7 @@
                     <div class="input-group input--medium">
                         <label class="label">Бажана ступінь</label>
                         <select class="input--style-1" id="degree">
+                            <option value="all">Всі</option>
                             {% for d in degree %}
                                 <option value="{{ d }}">{{ d }}</option>
                             {% endfor %}
