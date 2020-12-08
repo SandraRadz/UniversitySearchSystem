@@ -50,8 +50,15 @@ class UniversityStudyProgramDetailView(DetailView):
     template_name = "universities/university_study_program_detail.html"
 
     def get_context_data(self, **kwargs):
-
         context = super().get_context_data(**kwargs)
+        user = self.request.user
+        saved_list = []
+        if user and not user.is_anonymous:
+            saved_list = user.saved_programs.all()
+        if context['object'] in saved_list:
+            context["saved"] = True
+        else:
+            context["saved"] = False
         return context
 
 
