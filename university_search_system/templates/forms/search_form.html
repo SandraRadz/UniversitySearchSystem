@@ -27,7 +27,9 @@
                     <div class="input-group input--medium">
                         <label class="label">Спеціальність</label>
                         <select class="input--style-1" id="spec">
-                            <option value="cs">Computer Science</option>
+                            {% for program in study_program %}
+                                <option value="{{ program.id }}">{{ program.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
