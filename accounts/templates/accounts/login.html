@@ -4,32 +4,49 @@
 
 {% block content %}
     <div class="container">
-      <div class="row">
-          <div class="col-5">
-              <h3 class="mb-4">{% trans "Log In" %}</h3>
-            <form action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                {% include "forms/form_fields.html" with form=login_form %}
-                <div class="form-group">
-                  <button class="btn btn-primary btn-block" type="submit" value="sign_in">{% trans "Login" %}</button>
+        <div class="d-flex justify-content-center" style="margin: 25px 0 40px 0">
+            <h1>University Search System</h1>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-5">
+                <div class="d-flex justify-content-center">
+                    <h3 class="mb-4">Вхід</h3>
                 </div>
-            </form>
-              <div class="text-center pt-2">
-                    <a href="{% url 'password_reset' %}" rel="nofollow" class="link">{% trans "Forgot Password?" %}</a>
-              </div>
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {% include "forms/form_fields.html" with form=login_form %}
+                    <div class="form-group d-flex justify-content-center">
+                        <button class="button" type="submit" style="width: 250px"
+                                value="sign_in">Вхід
+                        </button>
+                    </div>
+                </form>
+                <div class="text-center pt-2">
+                    <a href="{% url 'password_reset' %}" rel="nofollow" class="button no-border white"
+                       style="text-decoration: none; font-size: 16px">
+                        <svg width="11" height="13" viewBox="0 0 11 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.375 5.75H8.8125V4.0625C8.8125 2.09844 7.21406 0.5 5.25 0.5C3.28594 0.5 1.6875 2.09844 1.6875 4.0625V5.75H1.125C0.503906 5.75 0 6.25391 0 6.875V11.375C0 11.9961 0.503906 12.5 1.125 12.5H9.375C9.99609 12.5 10.5 11.9961 10.5 11.375V6.875C10.5 6.25391 9.99609 5.75 9.375 5.75ZM6.1875 9.6875C6.1875 10.2055 5.76797 10.625 5.25 10.625C4.73203 10.625 4.3125 10.2055 4.3125 9.6875V8.5625C4.3125 8.04453 4.73203 7.625 5.25 7.625C5.76797 7.625 6.1875 8.04453 6.1875 8.5625V9.6875ZM6.9375 5.75H3.5625V4.0625C3.5625 3.13203 4.31953 2.375 5.25 2.375C6.18047 2.375 6.9375 3.13203 6.9375 4.0625V5.75Z"
+                                  fill="#74788D"/>
+                        </svg>
+                        Забули пароль?</a>
+                </div>
 
-          </div>
-
-          <div class="col-7">
-              <h3 class="mb-4">{% trans "Sign Up" %}</h3>
-            <form action="{% url 'register' %}" method="post">
-                {% csrf_token %}
-                {% include "forms/form_fields.html" with form=register_form %}
-                <div class="form-group">
-              <button class="btn btn-primary btn-block" type="submit" value="sign_up">{% trans "Sign Up" %}</button>
             </div>
-            </form>
-          </div>
-      </div>
+
+            <div class="col-5">
+                <div class="d-flex justify-content-center">
+                    <h3 class="mb-4">Реєстрація</h3>
+                </div>
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    {% include "forms/form_fields.html" with form=register_form %}
+                    <div class="form-group d-flex justify-content-center">
+                        <button class="button" type="submit" value="sign_up"
+                                style="width: 250px">Зареєструватися
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}

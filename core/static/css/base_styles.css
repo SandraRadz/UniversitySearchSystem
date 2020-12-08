@@ -1,0 +1,99 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.button {
+    cursor: pointer;
+    display: inline-block;
+
+    text-decoration: none;
+
+    font-size: 20px;
+
+    color: white !important;
+    background-color: rgba(67, 185, 170, 1);
+    border: 1px solid rgba(67, 185, 170, 1);
+    border-radius: 100px;
+
+    padding: .3em 1.2em;
+    margin: 5px;
+
+    /*background-size: 200% 100%;*/
+    /*background-image: linear-gradient(to right, transparent 50%, rgba(67, 185, 170, 1) 50%);*/
+    transition: background-color .5s ease, color .5s ease, border-color .5s ease;
+}
+
+.button:hover {
+    color: black !important;
+    background-color: white;
+    background-position: -100% 100%;
+}
+
+.button.white {
+    color: black !important;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .25);
+}
+
+.button.white:hover {
+    background-color: rgba(67, 185, 170, 1);
+    border: 1px solid rgba(67, 185, 170, 1);
+    color: white !important;
+}
+
+.button.no-border {
+    border: none !important;
+}
+
+.navbar-nav .nav-item {
+    font-weight: 700 !important;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.form-group input.form-control {
+    background-color: rgba(67, 185, 170, .25);
+    border: 1px solid rgba(67, 185, 170, 1);
+}
+
+.list-item {
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 2px 7px 30px rgba(0, 0, 0, .04);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    padding: 1rem;
+    border-radius: 7px;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+.list-item:hover {
+    top: -3px;
+    box-shadow: 2px 7px 30px rgba(0, 0, 0, .12);
+}

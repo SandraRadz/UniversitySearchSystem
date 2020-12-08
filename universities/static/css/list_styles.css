@@ -1,0 +1,11 @@
+.list-item .info {
+    margin-bottom: 15px;
+}
+
+.list-item .info p {
+    display: inline;
+}
+
+.list-item .info .label-text {
+    font-weight: 700;
+}
