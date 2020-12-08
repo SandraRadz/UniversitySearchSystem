@@ -15,6 +15,10 @@ class UniversityDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = self.request.user
+        if user and not user.is_anonymous:
+            history = user.search_university_history
+            history.add(context["object"])
         return context
 
     def get_object(self, queryset=None):
@@ -46,6 +50,7 @@ class UniversityStudyProgramDetailView(DetailView):
     template_name = "universities/university_study_program_detail.html"
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
         return context
 
@@ -66,5 +71,26 @@ class UniversityStudyProgramListView(ListView):
         return context
 
 
-def study_program_filter():
-    pass
+def add_to_saved(request):
+    try:
+        program_id = request.GET.get('id')
+        program_obj = StudyProgramInUniversity.objects.get(pk=program_id)
+        if request.user and not request.user.is_anonymous:
+            saved_program = request.user.saved_programs
+            saved_program.add(program_obj)
+        return {"status": 200}
+    except:
+        return {"status": 500}
+
+
+def delete_from_saved(request):
+    try:
+        program_id = request.GET.get('id')
+        program_obj = StudyProgramInUniversity.objects.get(pk=program_id)
+        if request.user and not request.user.is_anonymous:
+            saved_program = request.user.saved_programs
+            if program_obj in saved_program:
+                saved_program.remove(program_obj)
+        return {"status": 200}
+    except:
+        return {"status": 500}
