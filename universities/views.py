@@ -1,8 +1,10 @@
 from django.db.models import F
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.views.generic import DetailView, ListView
 
 from universities.forms import UniversityStudyProgramFilterForm
@@ -85,9 +87,9 @@ def add_to_saved(request):
         if request.user and not request.user.is_anonymous:
             saved_program = request.user.saved_programs
             saved_program.add(program_obj)
-        return {"status": 200}
+        return JsonResponse({"status": 200})
     except:
-        return {"status": 500}
+        return JsonResponse({"status": 500})
 
 
 def delete_from_saved(request):
@@ -98,6 +100,16 @@ def delete_from_saved(request):
             saved_program = request.user.saved_programs
             if program_obj in saved_program:
                 saved_program.remove(program_obj)
-        return {"status": 200}
+        return JsonResponse({"status": 200})
     except:
-        return {"status": 500}
+        return JsonResponse({"status": 500})
+
+
+def subscribe(request):
+    user = request.user
+    if user and not user.is_anonymous:
+        user.subscribe = True
+        user.save()
+        return JsonResponse({"status": 200})
+    else:
+        return JsonResponse({"status": 403})
