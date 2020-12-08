@@ -1,0 +1,7 @@
+.col-2.bookmark svg {
+    max-width: 30px;
+    height: auto;
+    position: absolute;
+    right: 20%;
+    cursor: pointer;
+}
