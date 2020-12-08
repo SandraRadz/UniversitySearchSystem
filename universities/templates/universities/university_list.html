@@ -43,5 +43,9 @@
 {% endblock %}
 
 {% block extra_js %}
+    <script>
+        var price_from = {{ price_from }};
+        var price_to = {{ price_to }};
+    </script>
     <script src="{% static '/js/search_form.js' %}"></script>
 {% endblock %}
