@@ -52,7 +52,7 @@ class UniversityStudyProgramDetailView(DetailView):
     def get_object(self, queryset=None):
         slug = self.kwargs['slug']
         for program in StudyProgramInUniversity.objects.all():
-            if slugify(program.name) == slug:
+            if slugify(program.study_program.name) == slug:
                 return program
         return None
 

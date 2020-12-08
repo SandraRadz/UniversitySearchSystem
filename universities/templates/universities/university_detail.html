@@ -39,10 +39,10 @@
                             <p class="label-info"><i>Відсутній</i></p>
                         {% endif %}
                     </div>
-                    {% for program in university.study_programs.all %}
+                    {% for program in university.university_study_programs.all %}
                         <a class="info" href="{% url "study-program-detail" program.slug %}">
                             <p class="label-text">Назва програми:</p>
-                            <p class="label-info">{{ program.name }}</p>
+                            <p class="label-info">{{ program.study_program.name }}</p>
                         </a>
                         <div class="info">
                             <p class="label-text">Опис програми:</p>
