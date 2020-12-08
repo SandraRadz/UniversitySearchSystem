@@ -14,122 +14,35 @@
         <div class="search-panel">
             {% include 'forms/search_form.html' %}
         </div>
-        <div class="list-item" onclick="location.href='';">
-            <div class="row">
-                <div class="col-4">
-                    <img src="{% static '/img/img.png' %}">
-                </div>
-                <div class="col-8">
-                    <h3>NAUKMA</h3>
-                    <div class="info">
-                        <p class="label-text">Опис:</p>
-                        <p class="label-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been
-                            the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of
-                            type and
-                            scrambled it to make a type specimen book. It has survived not only five centuries, but also
-                            the
-                            leap
-                            into electronic typesetting, remaining essentially unchanged. It was popularised in the
-                            1960s
-                            with the
-                            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                            publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
+        {% for university in object_list %}
+            <div class="list-item" style="cursor: pointer" onclick="location.href='{% url "university-detail" university.slug %}';">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="{% static '/img/img.png' %}">
                     </div>
-                    <div class="info">
-                        <p class="label-text">
-                            Рейтинг:
-                        </p>
-                        <p class="label-info">100.0</p>
+                    <div class="col-8">
+                        <h3>{{ university.name }}</h3>
+                        <div class="info">
+                            <p class="label-text">
+                                Країна:
+                            </p>
+                            <p class="label-info">{{ university.country }}</p>
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Опис:</p>
+                            <p class="label-info">{{ university.description }}</p>
+                        </div>
+                        <div class="info">
+                            <p class="label-text">
+                                Рейтинг:
+                            </p>
+                            <p class="label-info">100.0</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="list-item" onclick="location.href='';">
-            <div class="row">
-                <div class="col-4">
-                    <img src="{% static '/img/img.png' %}">
-                </div>
-                <div class="col-8">
-                    <h3>NAUKMA</h3>
-                    <div class="info">
-                        <p class="label-text">Опис:</p>
-                        <p class="label-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been
-                            the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of
-                            type and
-                            scrambled it to make a type specimen book. It has survived not only five centuries, but also
-                            the
-                            leap
-                            into electronic typesetting, remaining essentially unchanged. It was popularised in the
-                            1960s
-                            with the
-                            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                            publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-                    </div>
-                    <div class="info">
-                        <p class="label-text">
-                            Рейтинг:
-                        </p>
-                        <p class="label-info">100.0</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="list-item" onclick="location.href='';">
-            <div class="row">
-                <div class="col-4">
-                    <img src="{% static '/img/img.png' %}">
-                </div>
-                <div class="col-8">
-                    <h3>NAUKMA</h3>
-                    <div class="info">
-                        <p class="label-text">Опис:</p>
-                        <p class="label-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been
-                            the
-                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
-                            of
-                            type and
-                            scrambled it to make a type specimen book. It has survived not only five centuries, but also
-                            the
-                            leap
-                            into electronic typesetting, remaining essentially unchanged. It was popularised in the
-                            1960s
-                            with the
-                            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                            publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
-                        </p>
-                    </div>
-                    <div class="info">
-                        <p class="label-text">
-                            Рейтинг:
-                        </p>
-                        <p class="label-info">100.0</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
-
-    {#    {% for university in object_list %}#}
-    {#        <h1><a href="{% url "university-detail" university.slug %}">{{ university.name }}</a></h1>#}
-    {#        <p>Country: {{ university.country }}</p>#}
-    {#        <p>Study Program:</p>#}
-    {#        {% for program in university.study_programs.all %}#}
-    {#            <p>{{ program.name }}</p>#}
-    {#        {% endfor %}#}
-    {#        <p>{{ university.description }}</p>#}
-    {#    {% endfor %}#}
 {% endblock %}
 
 {% block extra_js %}
