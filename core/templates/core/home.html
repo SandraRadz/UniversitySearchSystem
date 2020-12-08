@@ -10,8 +10,8 @@
         <div class="container">
             <h1>University Search System</h1>
             <div class="btn-holder">
-                <a class="button">Реєстрація</a>
-                <a class="button white">Пошук</a>
+                <a class="button" href="{% url 'login' %}">Реєстрація</a>
+                <a class="button white" href="{% url 'university-list' %}">Пошук</a>
             </div>
             <div class="subscribeDiv">
                 <img src="{% static '/img/subscribe.png' %}">
