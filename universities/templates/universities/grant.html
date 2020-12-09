@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+    <div class="container">
+        <div class="d-flex justify-content-center" style="margin: 25px 0 40px 0">
+            <h1>Гранти</h1>
+        </div>
+        {% for grant in object_list %}
+            <div class="list-item">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>{{ grant.name }}</h3>
+                        <div class="info">
+                            <p class="label-text">Опис:</p>
+                            {% if grant.description is not none %}
+                                <p class="label-info">{{ grant.description }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Відсутній</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Дата початку:</p>
+                            {% if grant.start_date is not none %}
+                                <p class="label-info">{{ grant.start_date }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідома</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Дата кінця:</p>
+                            {% if grant.end_date is not none %}
+                                <p class="label-info">{{ grant.end_date }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідома</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Дедлайн подачі заявки:</p>
+                            {% if grant.deadline is not none %}
+                                <p class="label-info">{{ grant.deadline }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Сума грошей:</p>
+                            {% if grant.money_amount is not none %}
+                                <p class="label-info">{{ grant.money_amount }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Умови подачі:</p>
+                            {% if grant.conditions_for_participation is not none %}
+                                <p class="label-info">{{ grant.conditions_for_participation }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                        <div class="info">
+                            <p class="label-text">Необхідні документи:</p>
+                            {% if grant.list_of_documents is not none %}
+                                <p class="label-info">{{ grant.list_of_documents }}</p>
+                            {% else %}
+                                <p class="label-info"><i>Невідомо</i></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
