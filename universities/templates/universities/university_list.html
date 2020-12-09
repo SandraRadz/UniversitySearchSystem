@@ -5,6 +5,9 @@
         <div class="d-flex justify-content-center" style="margin: 25px 0 40px 0">
             <h1>Університети</h1>
         </div>
+        <div class="search-panel">
+            {% include 'forms/query_search_form.html' %}
+        </div>
         {% for university in object_list %}
             <div class="list-item" style="cursor: pointer"
                  onclick="location.href='{% url "university-detail" university.slug %}';">
@@ -47,4 +50,9 @@
             </div>
         {% endfor %}
     </div>
+{% endblock %}
+
+{% load static %}
+{% block extra_js %}
+    <script src="{% static '/js/query_search_form.js' %}"></script>
 {% endblock %}
