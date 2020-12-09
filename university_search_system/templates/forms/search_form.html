@@ -88,6 +88,17 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-3 d-flex justify-content-start">
+                    <div class="input-group input--medium">
+                        <label class="label">Форма навчання</label>
+                        <select class="input--style-1" id="form">
+                            <option value="all">Будь-яка</option>
+                            {% for form in form_of_study %}
+                                <option value="{{ form }}">{{ form }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-2" id="searchBtn">
