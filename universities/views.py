@@ -31,20 +31,15 @@ class UniversityDetailView(DetailView):
         return None
 
 
-class UniversityListView(ListView):
-    model = University
-    template_name = "universities/university_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_of_study"] = StudyProgramInUniversity.objects.all().values_list('form_of_study', flat=True).distinct()
-        context["study_program"] = StudyProgram.objects.all()
-        context["degree"] = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
-        context["university"] = University.objects.all()
-        context['countries'] = Country.objects.all()
-        context['price_from'] = min(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
-        context['price_to'] = max(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
-        return context
+def university_view(request):
+    search_word = request.GET.get("query")
+    object_list = University.objects.all()
+    if search_word:
+        object_list = object_list.filter(name__icontains=search_word)
+    context = {
+        "object_list": object_list,
+    }
+    return render(request, template_name="universities/university_list.html", context=context)
 
 
 def uni_study_programs(request):
@@ -58,7 +53,7 @@ def uni_study_programs(request):
 
     obj_list = StudyProgramInUniversity.objects.all()
     if search_word:
-        obj_list = obj_list.filter(study_program__name__contains=search_word)
+        obj_list = obj_list.filter(study_program__name__icontains=search_word)
     if price_from:
         obj_list = obj_list.filter(price__gte=price_from)
     if price_to:
