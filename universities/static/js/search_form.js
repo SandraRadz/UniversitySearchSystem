@@ -25,8 +25,9 @@ $(document).ready(function () {
         const spec = $('#spec').val()
         const country = $('#country').val()
         const query = $('#query').val()
+        const form = $('#form').val()
 
-        console.log(priceFrom, priceTo, scholarShip, degree, spec, country, query)
+        console.log(priceFrom, priceTo, scholarShip, degree, spec, country, query, form)
 
         location.href = "/universities/study-programs?priceFrom=" + encodeURIComponent(priceFrom) +
             "&priceTo=" + encodeURIComponent(priceTo) +
@@ -34,7 +35,8 @@ $(document).ready(function () {
             "&degree=" + encodeURIComponent(degree) +
             "&spec=" + encodeURIComponent(spec) +
             "&country=" + encodeURIComponent(country) +
-            "&query=" + encodeURIComponent(query)
+            "&query=" + encodeURIComponent(query) +
+            "&form=" + encodeURIComponent(form)
     });
 
     const url = new URL(location.href)
@@ -46,6 +48,7 @@ $(document).ready(function () {
     const specQuery = url.searchParams.get("spec")
     const countryQuery = url.searchParams.get("country")
     const queryQuery = url.searchParams.get("query")
+    const formQuery = url.searchParams.get("form")
 
     var startPriceFrom;
     var startPriceTo;
@@ -74,6 +77,9 @@ $(document).ready(function () {
     }
     if (queryQuery != null) {
         $('#query').val(queryQuery)
+    }
+    if (formQuery != null) {
+        $('#form').val(formQuery)
     }
 
     $('.noUi-handle').on('click', function () {
