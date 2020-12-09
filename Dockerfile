@@ -3,7 +3,7 @@ FROM python:3.7.3
 LABEL maintainer="kundik.kirill@gmail.com"
 LABEL version="0.0.1"
 LABEL description="Image for Uni project"
-LABEL url="https://uni-search.restful-api.site"
+LABEL url="https://university-search.online"
 
 ENV PYTHONUNBUFFERED=1
 

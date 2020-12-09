@@ -54,8 +54,6 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'health_check',
-    'django_elasticsearch_dsl',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -104,19 +102,6 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-}
-
-# Elasticsearch connection
-ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': f'{env("ELASTIC_HOST")}:{env("ELASTIC_PORT")}'
-    },
-}
-
-# Django REST Framework
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
 }
 
 # Password validation
