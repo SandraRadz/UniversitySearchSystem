@@ -50,6 +50,7 @@ def uni_study_programs(request):
     study_program = request.GET.get("spec")
     scholarship = request.GET.get("scholarShip")
     degree = request.GET.get("degree")
+    edu_form = request.GET.get("form")
 
     obj_list = StudyProgramInUniversity.objects.all()
     if search_word:
@@ -69,9 +70,11 @@ def uni_study_programs(request):
             obj_list = obj_list.filter(scholarship_availability=False)
     if degree and degree != "all":
         obj_list = obj_list.filter(degree=degree)
+    if edu_form and edu_form != "all":
+        obj_list = obj_list.filter(form_of_study=edu_form)
 
-    form_of_study = StudyProgramInUniversity.objects.all().values_list('form_of_study',
-                                                                       flat=True).distinct(),
+    form_of_study = StudyProgramInUniversity.objects.all().values_list('form_of_study', flat=True).distinct()
+
     study_program = StudyProgram.objects.all()
     degree = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
     university = University.objects.all()
