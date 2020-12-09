@@ -64,9 +64,9 @@ def uni_study_programs(request):
     if price_to:
         obj_list = obj_list.filter(price__lte=price_to)
     if country and country != "all":
-        obj_list = obj_list.filter(university__country__name=country)
+        obj_list = obj_list.filter(university__country__id=country)
     if study_program and study_program != "all":
-        obj_list = obj_list.filter(study_program__name=study_program)
+        obj_list = obj_list.filter(study_program_id=study_program)
     if scholarship and scholarship != "all":
         if scholarship == "true":
             obj_list = obj_list.filter(scholarship_availability=True)
