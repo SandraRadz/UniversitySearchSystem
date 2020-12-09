@@ -94,3 +94,21 @@ class StudyProgramInUniversity(models.Model):
     class Meta:
         verbose_name = "University Study Program"
         verbose_name_plural = "University Study Programs"
+
+
+class Grant(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
+    start_date = models.CharField(max_length=255, null=True, blank=True)
+    end_date = models.CharField(max_length=255, null=True, blank=True)
+    deadline = models.CharField(max_length=255, null=True, blank=True)
+    money_amount = models.CharField(max_length=255, null=True, blank=True)
+    conditions_for_participation = models.TextField(null=True, blank=True)
+    list_of_documents = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Grant"
+        verbose_name_plural = "Grants"

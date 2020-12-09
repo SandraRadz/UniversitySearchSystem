@@ -8,7 +8,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, ListView
 
 from universities.forms import UniversityStudyProgramFilterForm
-from universities.models import University, Country, StudyProgramInUniversity, StudyProgram
+from universities.models import University, Country, StudyProgramInUniversity, StudyProgram, Grant
 
 
 class UniversityDetailView(DetailView):
@@ -151,3 +151,11 @@ def subscribe(request):
         return JsonResponse({"status": 200})
     else:
         return JsonResponse({"status": 403})
+
+
+def grant_view(request):
+    object_list = Grant.objects.all()
+    context = {
+        "object_list": object_list
+    }
+    return render(request, template_name="universities/grant.html", context=context)
