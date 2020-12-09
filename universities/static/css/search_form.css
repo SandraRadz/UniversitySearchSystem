@@ -425,6 +425,10 @@ select.input--style-1 {
     color: white;
 }
 
+#searchBtn svg.small-icon {
+    width: 70px;
+}
+
 form.form {
     margin: 40px 0;
 }
