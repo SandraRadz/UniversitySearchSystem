@@ -36,6 +36,7 @@ def university_view(request):
     object_list = University.objects.all()
     if search_word:
         object_list = object_list.filter(name__icontains=search_word)
+    object_list = object_list.order_by("-rating")
     context = {
         "object_list": object_list,
     }
