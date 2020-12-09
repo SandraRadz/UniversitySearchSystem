@@ -2,7 +2,7 @@ from django.db.models import F
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-# Create your views here.
+
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.views.generic import DetailView, ListView
@@ -47,6 +47,59 @@ class UniversityListView(ListView):
         return context
 
 
+def uni_study_programs(request):
+    search_word = request.GET.get("query")
+    price_from = request.GET.get("priceFrom")
+    price_to = request.GET.get("priceTo")
+    country = request.GET.get("country")
+    study_program = request.GET.get("spec")
+    scholarship = request.GET.get("scholarShip")
+    degree = request.GET.get("degree")
+
+    obj_list = StudyProgramInUniversity.objects.all()
+    if search_word:
+        obj_list = obj_list.filter(study_program__name__contains=search_word)
+    if price_from:
+        obj_list = obj_list.filter(price__gte=price_from)
+    if price_to:
+        obj_list = obj_list.filter(price__lte=price_to)
+    if country and country != "all":
+        obj_list = obj_list.filter(university__country__name=country)
+    if study_program and study_program != "all":
+        obj_list = obj_list.filter(study_program__name=study_program)
+    if scholarship and scholarship != "all":
+        if scholarship == "true":
+            obj_list = obj_list.filter(scholarship_availability=True)
+        else:
+            obj_list = obj_list.filter(scholarship_availability=False)
+    if degree and degree != "all":
+        obj_list = obj_list.filter(degree=degree)
+
+    form_of_study = StudyProgramInUniversity.objects.all().values_list('form_of_study',
+                                                                       flat=True).distinct(),
+    study_program = StudyProgram.objects.all()
+    degree = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
+    university = University.objects.all()
+    countries = Country.objects.all()
+    price_from = min(
+        StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
+    price_to = max(
+        StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price',
+                                                                                 flat=True).distinct())
+
+    context = {
+        "object_list": obj_list,
+        "form_of_study": form_of_study,
+        "study_program": study_program,
+        "degree": degree,
+        "university": university,
+        'countries': countries,
+        'price_from': price_from,
+        'price_to': price_to
+    }
+    return render(request, template_name="universities/university_study_program_list.html", context=context)
+
+
 class UniversityStudyProgramDetailView(DetailView):
     model = StudyProgramInUniversity
     template_name = "universities/university_study_program_detail.html"
@@ -61,22 +114,6 @@ class UniversityStudyProgramDetailView(DetailView):
             context["saved"] = True
         else:
             context["saved"] = False
-        return context
-
-
-class UniversityStudyProgramListView(ListView):
-    model = StudyProgramInUniversity
-    template_name = "universities/university_study_program_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form_of_study"] = StudyProgramInUniversity.objects.all().values_list('form_of_study', flat=True).distinct()
-        context["study_program"] = StudyProgram.objects.all()
-        context["degree"] = StudyProgramInUniversity.objects.all().values_list('degree', flat=True).distinct()
-        context["university"] = University.objects.all()
-        context['countries'] = Country.objects.all()
-        context['price_from'] = min(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
-        context['price_to'] = max(StudyProgramInUniversity.objects.filter(price__isnull=False).values_list('price', flat=True).distinct())
         return context
 
 
