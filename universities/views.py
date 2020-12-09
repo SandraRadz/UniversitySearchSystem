@@ -113,11 +113,14 @@ class UniversityStudyProgramDetailView(DetailView):
 
 
 def add_to_saved(request):
+    user = request.user
+    if user.is_anonymous:
+        return JsonResponse({"status": 403})
     try:
         program_id = request.GET.get('id')
         program_obj = StudyProgramInUniversity.objects.get(pk=program_id)
-        if request.user and not request.user.is_anonymous:
-            saved_program = request.user.saved_programs
+        if user and not user.is_anonymous:
+            saved_program = user.saved_programs
             saved_program.add(program_obj)
         return JsonResponse({"status": 200})
     except:
@@ -125,11 +128,14 @@ def add_to_saved(request):
 
 
 def delete_from_saved(request):
+    user = request.user
+    if user.is_anonymous:
+        return JsonResponse({"status": 403})
     try:
         program_id = request.GET.get('id')
         program_obj = StudyProgramInUniversity.objects.get(pk=program_id)
-        if request.user and not request.user.is_anonymous:
-            saved_program = request.user.saved_programs
+        if user and not user.is_anonymous:
+            saved_program = user.saved_programs
             if program_obj in saved_program.all():
                 saved_program.remove(program_obj)
         return JsonResponse({"status": 200})
